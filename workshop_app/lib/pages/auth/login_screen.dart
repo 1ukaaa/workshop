@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:workshop_app/config/colors.dart';
 import 'package:workshop_app/viewmodel/auth_view_model.dart';
 
 import '../../widgets/widgets.dart';
@@ -75,7 +76,7 @@ class _TextMessage extends StatelessWidget {
           'Bienvenue sur',
           style: const TextStyle(
             fontSize: 35,
-            color: Colors.orange,
+            color: AppColors.primary,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -175,7 +176,7 @@ class _LoginButton extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         child: const Center(
-            child: CircularProgressIndicator(color: Colors.orange)),
+            child: CircularProgressIndicator(color: AppColors.primary)),
       );
     }
     if (state == AuthViewState.success) {
@@ -228,7 +229,7 @@ class _LoginButton extends StatelessWidget {
               : failedNotificationBar(
                   context, 'Veuillez remplir tous les champs');
         },
-        color: Colors.orange,
+        color: AppColors.primary,
         textColor: Colors.white,
         borderRadius: 10,
         height: 50,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshop_app/config/colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final String hintText;
@@ -44,7 +45,7 @@ class CustomTextFormFieldState extends State<CustomTextFormField> {
         ),
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
-          borderSide: BorderSide(color: Colors.orange),
+          borderSide: BorderSide(color: AppColors.primary),
         ),
         hintText: widget.hintText,
         hintStyle: const TextStyle(color: Colors.black),

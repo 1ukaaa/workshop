@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:workshop_app/config/colors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -113,7 +114,7 @@ class _HomeButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () => Navigator.pushNamed(context, '/survey'),
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: AppColors.primary,
         padding: const EdgeInsets.symmetric(vertical: 15),
         textStyle: const TextStyle(
           fontSize: 20,

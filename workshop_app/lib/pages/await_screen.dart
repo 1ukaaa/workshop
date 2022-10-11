@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:workshop_app/config/colors.dart';
 
 class AwaitScreen extends StatefulWidget {
   const AwaitScreen({super.key});
@@ -47,7 +48,7 @@ class _AwaitScreenState extends State<AwaitScreen> {
               const SizedBox(height: 50),
               LoadingAnimationWidget.fourRotatingDots(
                 size: 60,
-                color: Colors.orange,
+                color: AppColors.primary,
               )
             ],
           ),

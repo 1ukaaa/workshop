@@ -22,6 +22,11 @@ class AppRouter {
             child: const LoginScreen(),
             type: PageTransitionType.fade,
             duration: const Duration(milliseconds: 350));
+      case '/register':
+        return PageTransition(
+            child: const RegisterScreen(),
+            type: PageTransitionType.fade,
+            duration: const Duration(milliseconds: 350));
       case '/forgotPass':
         return PageTransition(
             child: const ForgotPasswordScreen(),

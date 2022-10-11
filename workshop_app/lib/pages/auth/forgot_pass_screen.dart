@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:workshop_app/config/colors.dart';
 
 import '../../widgets/widgets.dart';
 
@@ -66,7 +67,7 @@ class _TextMessage extends StatelessWidget {
             'Mot de passe oublié',
             style: const TextStyle(
               fontSize: 30,
-              color: Colors.orange,
+              color: AppColors.primary,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -114,7 +115,7 @@ class _ResetPasswordButton extends StatelessWidget {
       child: CustomButton(
         text: 'Réinitialiser le mot de passe',
         onPressed: () => print('Reset password'),
-        color: Colors.orange,
+        color: AppColors.primary,
         textColor: Colors.white,
         borderRadius: 10,
         height: 50,
