@@ -55,7 +55,7 @@ class AuthViewModel with ChangeNotifier {
     // final response = await api.sendDataApi(params: params);
     // return response;
     await Future.delayed(const Duration(seconds: 2));
-    if (_email == 'admin') {
+    if (_email == 'admin@') {
       state = AuthViewState.success;
     } else {
       state = AuthViewState.error;

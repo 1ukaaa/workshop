@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:workshop_app/viewmodel/auth_view_model.dart';
 
-import '../widgets/widgets.dart';
+import '../../widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -95,12 +95,31 @@ class _TextMessage extends StatelessWidget {
 class _EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: CustomTextFormField(
-        hintText: 'Email',
-        onChanged: (value) => context.read<AuthViewModel>().email = value,
-      ),
+    final isEmailValid = context.watch<AuthViewModel>().isEmailValid;
+    final email = context.watch<AuthViewModel>().email;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: CustomTextFormField(
+            hintText: 'Email',
+            onChanged: (value) => context.read<AuthViewModel>().email = value,
+          ),
+        ),
+        const SizedBox(height: 5),
+        if (!isEmailValid && email.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Text(
+              'Email invalide',
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 12,
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
@@ -131,7 +150,7 @@ class _ForgotPassword extends StatelessWidget {
         child: InkWell(
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
-          // onTap: () => Navigator.pushNamed(context, '/forgotpass'),
+          onTap: () => Navigator.pushNamed(context, '/forgotPass'),
           child: Text(
             'Mot de passe oublié ?',
             style: const TextStyle(
@@ -151,6 +170,7 @@ class _LoginButton extends StatelessWidget {
     final email = context.watch<AuthViewModel>().email;
     final password = context.watch<AuthViewModel>().password;
     final state = context.read<AuthViewModel>().state;
+    final isEmailValid = context.watch<AuthViewModel>().isEmailValid;
     if (state == AuthViewState.loading) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
@@ -182,20 +202,27 @@ class _LoginButton extends StatelessWidget {
         onPressed: () async {
           email.isNotEmpty || password.isNotEmpty
               ? {
-                  await context.read<AuthViewModel>().login(),
-                  if (context.read<AuthViewModel>().state ==
-                      AuthViewState.success)
+                  if (isEmailValid)
                     {
-                      await successNotificationBar(
-                          context, 'Connexion réussie !'),
-                      Navigator.pushNamed(context, '/home'),
+                      await context.read<AuthViewModel>().login(),
+                      if (context.read<AuthViewModel>().state ==
+                          AuthViewState.success)
+                        {
+                          await successNotificationBar(
+                              context, 'Connexion réussie !'),
+                          Navigator.pushNamed(context, '/home'),
+                        }
+                      else
+                        {
+                          await failedNotificationBar(
+                              context, 'Email ou mot de passe incorrect'),
+                          context.read<AuthViewModel>().state =
+                              AuthViewState.initial,
+                        }
                     }
                   else
                     {
-                      await failedNotificationBar(
-                          context, 'Email ou mot de passe incorrect'),
-                      context.read<AuthViewModel>().state =
-                          AuthViewState.initial,
+                      failedNotificationBar(context, 'Email invalide'),
                     }
                 }
               : failedNotificationBar(
