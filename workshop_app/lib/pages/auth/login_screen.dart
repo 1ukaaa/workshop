@@ -156,7 +156,7 @@ class _ForgotPassword extends StatelessWidget {
             'Mot de passe oublié ?',
             style: const TextStyle(
               fontSize: 15,
-              color: Colors.amber,
+              color: AppColors.secondary,
             ),
           ),
         ),
@@ -253,7 +253,7 @@ class _RegisterButton extends StatelessWidget {
             TextSpan(
               text: 'S\'inscrire',
               style: const TextStyle(
-                color: Colors.amber,
+                color: AppColors.secondary,
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.underline,
               ),
