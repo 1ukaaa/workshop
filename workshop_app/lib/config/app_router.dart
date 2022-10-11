@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:workshop_app/pages/home_screen.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../pages/pages.dart';
 
@@ -13,7 +13,20 @@ class AppRouter {
 
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return PageTransition(
+            child: const AwaitScreen(),
+            type: PageTransitionType.fade,
+            duration: const Duration(milliseconds: 350));
+      case '/home':
+        return PageTransition(
+            child: const HomeScreen(),
+            type: PageTransitionType.fade,
+            duration: const Duration(milliseconds: 350));
+      case '/survey':
+        return PageTransition(
+            child: const SurveyScreen(),
+            type: PageTransitionType.fade,
+            duration: const Duration(milliseconds: 350));
 
       default:
         return _errorRoute();

@@ -1,11 +1,58 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'dart:async';
 
-class AwaitScreen extends StatelessWidget {
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+
+class AwaitScreen extends StatefulWidget {
   const AwaitScreen({super.key});
 
   @override
+  State<AwaitScreen> createState() => _AwaitScreenState();
+}
+
+class _AwaitScreenState extends State<AwaitScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, '/home');
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container();
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              AnimatedTextKit(
+                animatedTexts: [
+                  TypewriterAnimatedText(
+                    'Welcome',
+                    textStyle: const TextStyle(
+                      fontSize: 30,
+                      color: Colors.black,
+                    ),
+                    speed: const Duration(milliseconds: 600),
+                  ),
+                ],
+                isRepeatingAnimation: true,
+                totalRepeatCount: 10,
+              ),
+              const SizedBox(height: 50),
+              LoadingAnimationWidget.fourRotatingDots(
+                size: 60,
+                color: Colors.red,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
