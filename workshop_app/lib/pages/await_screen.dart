@@ -15,8 +15,8 @@ class _AwaitScreenState extends State<AwaitScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/home');
+    Future.delayed(const Duration(seconds: 5), () {
+      Navigator.pushReplacementNamed(context, '/login');
     });
   }
 
@@ -47,7 +47,7 @@ class _AwaitScreenState extends State<AwaitScreen> {
               const SizedBox(height: 50),
               LoadingAnimationWidget.fourRotatingDots(
                 size: 60,
-                color: Colors.red,
+                color: Colors.orange,
               )
             ],
           ),

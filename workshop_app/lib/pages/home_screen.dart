@@ -29,6 +29,7 @@ class _HomeScreenForm extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: const [
         _Lotties(),
+        SizedBox(height: 50),
         _HomeBox(),
       ],
     );

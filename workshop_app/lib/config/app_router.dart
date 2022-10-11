@@ -17,6 +17,11 @@ class AppRouter {
             child: const AwaitScreen(),
             type: PageTransitionType.fade,
             duration: const Duration(milliseconds: 350));
+      case '/login':
+        return PageTransition(
+            child: const LoginScreen(),
+            type: PageTransitionType.fade,
+            duration: const Duration(milliseconds: 350));
       case '/home':
         return PageTransition(
             child: const HomeScreen(),
