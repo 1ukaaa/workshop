@@ -45,17 +45,9 @@ class AuthViewModel with ChangeNotifier {
       _confirmPassword.isNotEmpty && _confirmPassword.length >= 6;
 
   Future login() async {
-    final params = {
-      'email': _email,
-      'password': _password,
-    };
-
     state = AuthViewState.loading;
-
-    // final response = await api.sendDataApi(params: params);
-    // return response;
     await Future.delayed(const Duration(seconds: 2));
-    if (_email == 'admin@') {
+    if (_email == 'admin@admin.com') {
       state = AuthViewState.success;
     } else {
       state = AuthViewState.error;

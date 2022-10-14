@@ -5,11 +5,10 @@ import 'package:dio/dio.dart';
 class Api {
   Api({required this.dio});
   final Dio dio;
-  static const String url = '';
 
-  sendDataApi({required dynamic params}) async {
+  sendDataApi({required String url}) async {
     try {
-      final response = await Dio().post(url, data: params);
+      final response = await Dio().get(url);
       if (response.statusCode == 200) {
         return response.data;
       }
